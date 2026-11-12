@@ -5,6 +5,20 @@ setlocale(LC_TIME, 'Russian_Russia.1251');
 $day = strftime('%d');
 $mon = iconv('Windows-1251', 'UTF-8', strftime('%B'));
 $year = strftime('%Y');
+$hour = (int) strftime('%H');
+$welcome = '';
+
+if ($hour >= 0 && $hour < 6) {
+    $welcome = 'Доброй ночи';
+} elseif ($hour >= 6 && $hour < 12) {
+    $welcome = 'Доброе утро';
+} elseif ($hour >= 12 && $hour < 18) {
+    $welcome = 'Добрый день';
+} elseif ($hour >= 18 && $hour <= 23) {
+    $welcome = 'Добрый вечер';
+} else {
+    $welcome = 'Здравствуйте';
+}
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +41,7 @@ $year = strftime('%Y');
 
   <div id="content">
     <!-- Заголовок -->
-    <h1>Добро пожаловать на наш сайт!</h1>
+    <h1><?= $welcome ?>, Гость!</h1>
     <!-- Заголовок -->
     <!-- Область основного контента -->
      <blockquote>
