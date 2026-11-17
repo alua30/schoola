@@ -44,18 +44,25 @@ $rows = 5;
       <input type='submit' value='Создать' />
     </form>
    <!-- Таблица -->
-    <?php
-    echo "<table border='1' width='200'>";
-    for ($i = 1; $i <= $rows; $i++) {
+<?php
+// Стиль ячеек первой строки и первого столбца
+$headStyle = "style='font-weight: bold; text-align: center; background-color: #CFD8E3;'";
+
+echo "<table border='1' width='200' style='background-color: #FFFFFF;'>";
+for ($i = 1; $i <= $rows; $i++) {
     echo '<tr>';
     for ($j = 1; $j <= $cols; $j++) {
-        echo '<td>', $i * $j, '</td>';
+        if ($i == 1 || $j == 1) {
+            echo "<td $headStyle>", $i * $j, '</td>';
+        } else {
+            echo '<td>', $i * $j, '</td>';
+        }
     }
     echo '</tr>';
-    }
-    echo '</table>';
-    ?>
-    <!-- Таблица -->
+}
+echo '</table>';
+?>
+<!-- Таблица -->
     <!-- Область основного контента -->
   </div>
   <div id="nav">
