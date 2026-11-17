@@ -17,6 +17,26 @@ $leftMenu = [
     ['link' => 'Калькулятор', 'href' => 'calc.php']
 ];
 
+// Функция отрисовки меню навигации
+// $menu     - массив с структурой меню (ключи 'link' и 'href')
+// $vertical - true: вертикальное меню, false: горизонтальное
+function drawMenu($menu, $vertical = true)
+{
+    if ($vertical) {
+        echo '<ul>';
+        foreach ($menu as $item) {
+            echo '<li><a href="', $item['href'], '">', $item['link'], '</a></li>';
+        }
+        echo '</ul>';
+    } else {
+        $links = [];
+        foreach ($menu as $item) {
+            $links[] = '<a href="' . $item['href'] . '">' . $item['link'] . '</a>';
+        }
+        echo implode(' | ', $links);
+    }
+}
+
 if ($hour >= 0 && $hour < 6) {
     $welcome = 'Доброй ночи';
 } elseif ($hour >= 6 && $hour < 12) {
@@ -74,14 +94,10 @@ if ($hour >= 0 && $hour < 6) {
   <div id="nav">
     <!-- Навигация -->
     <h2>Навигация по сайту</h2>
-    <!-- Меню -->
-     <?php
-     echo '<ul>';
-     foreach ($leftMenu as $item) {
-      echo '<li><a href="', $item['href'], '">', $item['link'], '</a></li>';
-    }
-    echo '</ul>';
-    ?>
+   <!-- Меню -->
+<?php
+drawMenu($leftMenu);
+?>
 <!-- Меню -->
     <!-- Навигация -->
   </div>
