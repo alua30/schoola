@@ -1,3 +1,9 @@
+<?php
+// Количество столбцов и строк таблицы (значения от 1 до 10)
+$cols = 7;
+$rows = 5;
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -37,44 +43,18 @@
       <br />
       <input type='submit' value='Создать' />
     </form>
-    <!-- Таблица -->
-    <table border='1' width="200">
-      <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-        <td>4</td>
-        <td>5</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>4</td>
-        <td>6</td>
-        <td>8</td>
-        <td>10</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>6</td>
-        <td>9</td>
-        <td>12</td>
-        <td>15</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>8</td>
-        <td>12</td>
-        <td>16</td>
-        <td>10</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td>10</td>
-        <td>15</td>
-        <td>20</td>
-        <td>25</td>
-      </tr>
-    </table>
+   <!-- Таблица -->
+    <?php
+    echo "<table border='1' width='200'>";
+    for ($i = 1; $i <= $rows; $i++) {
+    echo '<tr>';
+    for ($j = 1; $j <= $cols; $j++) {
+        echo '<td>', $i * $j, '</td>';
+    }
+    echo '</tr>';
+    }
+    echo '</table>';
+    ?>
     <!-- Таблица -->
     <!-- Область основного контента -->
   </div>
