@@ -1,7 +1,25 @@
 <?php
-// Количество столбцов и строк таблицы (значения от 1 до 10)
-$cols = 7;
-$rows = 5;
+// Функция отрисовки таблицы умножения
+// $cols  - число столбцов, $rows - число строк,
+// $color - цвет фона ячеек первой строки и первого столбца
+function drawTable($cols, $rows, $color)
+{
+    $headStyle = "style='font-weight: bold; text-align: center; background-color: $color;'";
+
+    echo "<table border='1' width='200' style='background-color: #FFFFFF;'>";
+    for ($i = 1; $i <= $rows; $i++) {
+        echo '<tr>';
+        for ($j = 1; $j <= $cols; $j++) {
+            if ($i == 1 || $j == 1) {
+                echo "<td $headStyle>", $i * $j, '</td>';
+            } else {
+                echo '<td>', $i * $j, '</td>';
+            }
+        }
+        echo '</tr>';
+    }
+    echo '</table>';
+}
 ?>
 
 <!DOCTYPE html>
@@ -45,22 +63,7 @@ $rows = 5;
     </form>
    <!-- Таблица -->
 <?php
-// Стиль ячеек первой строки и первого столбца
-$headStyle = "style='font-weight: bold; text-align: center; background-color: #CFD8E3;'";
-
-echo "<table border='1' width='200' style='background-color: #FFFFFF;'>";
-for ($i = 1; $i <= $rows; $i++) {
-    echo '<tr>';
-    for ($j = 1; $j <= $cols; $j++) {
-        if ($i == 1 || $j == 1) {
-            echo "<td $headStyle>", $i * $j, '</td>';
-        } else {
-            echo '<td>', $i * $j, '</td>';
-        }
-    }
-    echo '</tr>';
-}
-echo '</table>';
+drawTable(6, 6, '#CFD8E3');
 ?>
 <!-- Таблица -->
     <!-- Область основного контента -->
