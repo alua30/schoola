@@ -1,3 +1,45 @@
+<?php
+// Задача 1. Строка начинается на 'http://'
+function startsWithHttp($str)
+{
+    return substr($str, 0, 7) === 'http://';
+}
+
+// Задача 2. Пол по ФИО (по отчеству, то есть по последнему слову)
+function getGender($fio)
+{
+    $words = preg_split('/\s+/u', trim($fio));
+    $patronymic = mb_strtolower(end($words), 'UTF-8');
+
+    $male = ['ич', 'оглы', 'улы', 'ұлы'];
+    $female = ['на', 'кызы', 'гызы', 'қызы'];
+
+    foreach ($male as $ending) {
+        if (mb_substr($patronymic, -mb_strlen($ending, 'UTF-8'), null, 'UTF-8') === $ending) {
+            return 'мужской';
+        }
+    }
+    foreach ($female as $ending) {
+        if (mb_substr($patronymic, -mb_strlen($ending, 'UTF-8'), null, 'UTF-8') === $ending) {
+            return 'женский';
+        }
+    }
+    return 'не удалось определить';
+}
+
+// Задача 3. Делители числа
+function getDivisors($number)
+{
+    $divisors = [];
+    for ($i = 1; $i <= $number; $i++) {
+        if ($number % $i == 0) {
+            $divisors[] = $i;
+        }
+    }
+    return $divisors;
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -98,6 +140,35 @@
     echo 'После обмена: ', implode(', ', $arr), '<br>';
     ?>
 
+
+    <h3>Задача 1. startsWithHttp()</h3>
+    <?php
+    $urls = ['http://example.com', 'https://example.com', 'example.com'];
+    foreach ($urls as $url) {
+        echo $url, ' &rarr; ', startsWithHttp($url) ? 'true' : 'false', '<br>';
+    }
+    ?>
+
+    <h3>Задача 2. getGender()</h3>
+    <?php
+    $names = [
+        'Иванов Иван Иванович',
+        'Петрова Анна Сергеевна',
+        'Мустафина Алуа Руфатовна',
+        'Ахметов Ерлан Серикұлы',
+        'Нурланова Айгерім Қайратқызы',
+    ];
+    foreach ($names as $name) {
+        echo $name, ' &rarr; ', getGender($name), '<br>';
+    }
+    ?>
+
+    <h3>Задача 3. getDivisors()</h3>
+    <?php
+    foreach ([12, 17, 36] as $n) {
+        echo "Делители числа $n: ", implode(', ', getDivisors($n)), '<br>';
+    }
+    ?>
     <!-- Область основного контента -->
   </div>
   <div id="nav">
