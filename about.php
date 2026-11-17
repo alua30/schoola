@@ -35,6 +35,69 @@
     <p>
       Сайт оптимизирован под все браузеры. Наилучшее качество просмотра достигается при разрешении экрана монитора - 1280 на 1024 точек.
     </p>
+
+        <!-- Задание 1 -->
+    <h3>Задание 1. Дни недели на русском и английском</h3>
+    <?php
+    // Двухмерный массив: первый ключ 'ru', второй 'en'
+    $days = [
+        'ru' => ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
+        'en' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    ];
+
+    // Вложенные циклы foreach
+    foreach ($days as $lang => $list) {
+        echo "<b>$lang:</b><br>";
+        foreach ($list as $day) {
+            echo $day, '<br>';
+        }
+        echo '<br>';
+    }
+    ?>
+
+    <!-- Задание 2 -->
+    <h3>Задание 2. Элементы больше 3, но меньше 10</h3>
+    <?php
+    $numbers = [2, 5, 9, 15, 0, 4];
+
+    foreach ($numbers as $number) {
+        if ($number > 3 && $number < 10) {
+            echo $number, '<br>';
+        }
+    }
+    ?>
+
+    <!-- Задание 3 -->
+    <h3>Задание 3. Обмен максимального и минимального значений</h3>
+    <?php
+    // Массив из 10 случайных значений
+    $arr = [];
+    for ($i = 0; $i < 10; $i++) {
+        $arr[] = rand(1, 100);
+    }
+    echo 'Исходный массив: ', implode(', ', $arr), '<br>';
+
+    // Ищем индексы максимального и минимального элементов
+    $maxIndex = 0;
+    $minIndex = 0;
+    foreach ($arr as $index => $value) {
+        if ($value > $arr[$maxIndex]) {
+            $maxIndex = $index;
+        }
+        if ($value < $arr[$minIndex]) {
+            $minIndex = $index;
+        }
+    }
+    echo 'Максимальное: ', $arr[$maxIndex], ', минимальное: ', $arr[$minIndex], '<br>';
+
+    // Меняем их местами
+    $temp = $arr[$maxIndex];
+    $arr[$maxIndex] = $arr[$minIndex];
+    $arr[$minIndex] = $temp;
+
+    echo 'После обмена: ', implode(', ', $arr), '<br>';
+    ?>
+
     <!-- Область основного контента -->
   </div>
   <div id="nav">
